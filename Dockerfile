@@ -19,3 +19,9 @@ RUN mkdir $HOME/casadi
 RUN tar -xvf /tmp/octave.tar.gz -C $HOME/casadi
 RUN rm /tmp/octave.tar.gz
 
+RUN echo "addpath('$HOME/casadi');" > $HOME/.octaverc
+
+COPY . ${HOME}
+USER root
+RUN chown -R ${NB_UID} ${HOME}
+USER ${NB_USER}
