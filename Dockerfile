@@ -1,16 +1,9 @@
-FROM jupyter/base-notebook:4d19a9839c05
+FROM jgillis/jupyter-octave:latest
 
-RUN pip install --no-cache-dir octave_kernel
 USER root
 
-RUN apt-get update
-RUN apt-get install -y software-properties-common
-RUN add-apt-repository ppa:octave/stable
-RUN apt-get update
-RUN apt-get install -y octave
 
-
-
+#ADD https://github.com/casadi/binaries/releases/download/commit-2e2149b/casadi-linux-octave-4.2.2-2e2149b.tar.gz /tmp/octave.tar.gz
 ADD https://github.com/casadi/casadi/releases/download/3.5.0/casadi-linux-octave-4.2.2-v3.5.0.tar.gz /tmp/octave.tar.gz
 RUN chown $NB_USER:$NB_GID /tmp/octave.tar.gz
 
@@ -21,6 +14,7 @@ RUN rm /tmp/octave.tar.gz
 
 RUN echo "addpath('$HOME/casadi');" > $HOME/.octaverc
 
+RUN conda install -c damianavila82 RISE
 COPY . ${HOME}
 USER root
 RUN chown -R ${NB_UID} ${HOME}
