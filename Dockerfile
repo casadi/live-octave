@@ -11,7 +11,7 @@ RUN apt-get install -y octave
 
 
 
-ADD https://github.com/casadi/casadi/releases/download/3.4.5/casadi-linux-octave-v3.4.5.tar.gz /tmp/octave.tar.gz
+ADD https://github.com/casadi/casadi/releases/download/3.5.0/casadi-linux-octave-4.2.2-v3.5.0.tar.gz /tmp/octave.tar.gz
 RUN chown $NB_USER:$NB_GID /tmp/octave.tar.gz
 
 USER $NB_UID
